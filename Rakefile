@@ -1,3 +1,4 @@
+
 require 'rake'
 
 # Include environment settings
@@ -54,9 +55,19 @@ namespace :generate do
 end
 
 namespace :db do
+  desc "Create the database at #{DB_NAME}"
+  task :create do
+    puts "Create database #{DB_NAME} if it doesn't exist..."
+    exec("createdb #{DB_NAME}")
+  end
 
+  desc "Drop the database at #{DB_NAME}"
+  task :drop do
+    puts "Dropping database #{DB_NAME}..."
+    exec("dropdb #{DB_NAME}")
+  end
+  
  desc "Migrate the database (options: VERSION=x, VERBOSE=false, SCOPE=blog)."
-
  task :migrate do
 
   ActiveRecord::Migrator.migrations_paths << File.dirname(__FILE__) + 'db/migrate'
@@ -66,8 +77,17 @@ namespace :db do
   end
  end
 
-end
 
+  desc "Populate the database with dummy data by running db/seeds.rb"
+  task :seed do
+    require APP_ROOT.join('db', 'seeds.rb')
+  end
+
+  desc "Returns the current schema version number"
+  task :version do
+    puts "Current version: #{ActiveRecord::Migrator.current_version}"
+  end
+end
 
 
 desc 'Initiate IRB console with environment loaded'
