@@ -1,7 +1,3 @@
-require_relative '../config'
-
-# this is where you should use an ActiveRecord migration to
-
 class CreatTable < ActiveRecord::Migration[5.0]
   def change
     # HINT: checkout ActiveRecord::Migration.create_table

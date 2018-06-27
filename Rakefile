@@ -92,5 +92,5 @@ end
 
 desc 'Initiate IRB console with environment loaded'
 task "console" do
-  exec "irb -r./config/init"
+  exec "irb -r ./config/init"
 end
