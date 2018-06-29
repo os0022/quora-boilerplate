@@ -1,7 +1,6 @@
 <html>
   <head>
     <title>Quora Clone</title>
-    
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,8 +8,16 @@
     <link rel="stylesheet" type="text/css" href="css/application.css">
   </head>
   <body>
-
+    <% if current_user %>
+      <%= current_user.username %>
+      <a href="/logout"> Log out!</a>
+      <a href="/users/:id">profile page</a>
+    <% else %>
+      <a href="/sign_up">Sign up</a>
+      <a href="/login">Log in</a>
+    <% end %>
     <%= yield %>
+
 
   </body>
 </html>

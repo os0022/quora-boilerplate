@@ -1,0 +1,40 @@
+<h1>Sign Up Here</h1>
+<form method="post">
+    <div>
+        <label for='first_name'>First Name :</label>
+    </div>
+    <input type="text" name="user[first_name]" placeholder="Enter your first name" id='first_name'>
+    <div>
+        <label for='last_name'>Last Name :</label>
+    </div>
+    <input type="text" name="user[last_name]" placeholder="Enter your last name" id='last_name'>
+    <div>
+        <label for='username'>Username :</label>
+    </div>
+    <input type="text" name="user[username]" placeholder="Enter your username" id='username'>
+    <div>
+        <label for='email'>Email :</label>
+    </div>
+    <input type="email" name="user[email]" placeholder="Enter your email" id='email'>
+    <% if @errors != nil %>
+    <% @errors.each do |error,msg|%>
+    <%=msg%>
+    <br>
+    <%end%>
+        <%end%>
+    <% if @taken_email != nil %>
+    <% @taken_email.each do |error|%>
+    <%= error %>
+    <br>
+        <%end%>
+    <%end%>
+    <div><label for='password'>Password  :</label></div>
+    <input type="password" name="user[password]" placeholder="Enter your password" id="password">
+    <% if @pass != nil %>
+    <% @pass.each do |error|%>
+    <%=error%>
+    <br>
+    <%end%>
+        <%end%>
+    <input type="submit" name="submit" value="SIGNUP">
+</form>

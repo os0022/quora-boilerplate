@@ -1,0 +1,16 @@
+<h1>Login Here</h1>
+<form method="post">
+<div><label for='username'>Username :</label></div>
+    <input type="text" name="user[username]" placeholder="Enter your username" id='username' required>
+    <div><label for='password'>Password  :</label></div>
+    <input type="password" name="user[password]" placeholder="Enter your password" id="password" required>
+    <input type="submit" name="submit" value="Login">
+    <br>
+    <br>
+    <% if @incorrect_email != nil %>
+        <% @incorrect_email.each do |error|%>
+            <%= errorn%>
+            <br>
+        <%end%>
+    <%end%>
+</form>
