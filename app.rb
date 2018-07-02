@@ -8,6 +8,7 @@ enable :sessions
 ##############################
 
 get '/' do
+  @all_questions = Question.all
   erb :home
 end
 
@@ -26,7 +27,6 @@ get '/logout' do
 end
 
 get "/users/:id" do
-
 	# => params[:id]
 	if session[:username] != nil && session[:id] != nil
 		# @user = session[:username]
@@ -45,6 +45,11 @@ get "/questions/:id" do
 	@question = Question.find(params[:id].to_i)
     erb :questions
 end
+
+# get "/questions" do
+	
+# 	erb :allquestions
+# end
 
 ##############################
 # POST ROUTES
@@ -108,6 +113,19 @@ post "/questions/:id" do
 	@answer = Answer.new(content: params[:answer], user_id: session[:id], question_id: params[:id])
 	@answer.save
 	redirect "/questions/#{@question.id}"
+end
+
+post "/answers/:id/vote" do
+	vote = Vote.find_by(answer_id: params[:id].to_i, user_id: session[:id])
+	if vote
+		flash[:notice] = "You have already voted."
+		redirect back
+		
+	else
+		Vote.create(user_id: session[:id], answer_id: params[:id], upvote: 1)
+		redirect back
+	end
+
 end
 
 ##############################

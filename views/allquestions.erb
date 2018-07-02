@@ -1,0 +1,8 @@
+<h1> Quora Clone</h1>
+
+<% @all_questions.each do |x| %>
+	<%= x.title %>
+	<br>
+	<a href="/questions/<%= x.id %>">Read more</a>
+	<br>
+<% end %>

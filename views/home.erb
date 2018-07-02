@@ -1,1 +1,16 @@
-<h1> Quora Clone</h1>
+<h1>  Quora Clone</h1>
+
+<div class="row">
+<% @all_questions.each do |x| %>
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= x.title %></h5>
+        <a href="questions/<%= x.id %>" class="btn btn-primary">Read more</a>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+

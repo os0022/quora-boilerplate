@@ -22,6 +22,8 @@ require 'bcrypt'
 
 require 'sinatra/cookies'
 
+require 'sinatra/flash'
+
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 
 set :public_folder, File.join(APP_ROOT, "public")

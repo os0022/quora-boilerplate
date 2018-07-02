@@ -9,6 +9,17 @@
 </form>
 
 <% @question.answers.each do |answer| %>
-	<%= answer.content %>
-	<br>
+	<%= answer.content %><br>
+	<form method="POST" action="/answers/<%= answer.id %>/vote">
+		<div>
+			<p>Total votes: <span><%= answer.votes.count %></span></p>
+			<input type="radio" id="up_vote" name="vote" value="up_vote"><label for="up_vote">Up Vote</label> 
+			<!-- <input type="radio" id="down_vote" name="vote" value="down_vote"><label for="down_vote">Down Vote</label> -->
+		</div>
+		<input type="submit" name="Submit" value="Vote">
+	</form>
+	<%flash.each do |attr,msg|%>
+		<%=msg%>
+		<br>
+	<%end%>
 <% end %>
